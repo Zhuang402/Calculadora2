@@ -1,0 +1,373 @@
+:root {
+    --fondo1: #4f8cff;
+    --fondo2: #7b4fd8;
+    --card: #ffffff;
+    --texto: #2d2d3a;
+    --principal: #6c4fd0;
+    --principal-osc: #5339ad;
+    --borde: #dcdcdc;
+    --suave: #f3f0ff;
+    --codigo: #1e1e2e;
+}
+
+body.oscuro {
+    --fondo1: #1a1a2e;
+    --fondo2: #16213e;
+    --card: #232336;
+    --texto: #ecebf5;
+    --principal: #9b7ede;
+    --principal-osc: #b69cf0;
+    --borde: #3a3a55;
+    --suave: #2c2c44;
+    --codigo: #11111b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, var(--fondo1), var(--fondo2));
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: var(--texto);
+    transition: background 0.4s;
+}
+
+header {
+    position: relative;
+    text-align: center;
+    color: white;
+    padding: 40px 20px 20px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+.tema {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0;
+}
+
+main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    gap: 22px;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    border-left: 8px solid var(--principal);
+    transition: background 0.4s, border-color 0.4s;
+    animation: aparecer 0.6s ease both;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.etiqueta {
+    display: inline-block;
+    background: var(--suave);
+    color: var(--principal);
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+}
+
+.card h2 {
+    color: var(--principal);
+    margin-bottom: 8px;
+}
+
+.card p {
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+
+.fila {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+input {
+    flex: 1;
+    min-width: 120px;
+    padding: 11px;
+    border: 2px solid var(--borde);
+    border-radius: 10px;
+    font-size: 1rem;
+    background: var(--card);
+    color: var(--texto);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--principal);
+}
+
+button {
+    padding: 11px 20px;
+    background: var(--principal);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+button:hover {
+    background: var(--principal-osc);
+    transform: translateY(-2px);
+}
+
+button.secundario {
+    background: var(--suave);
+    color: var(--principal);
+    font-size: 0.9rem;
+}
+
+.aviso {
+    color: #d64545;
+    font-weight: 600;
+    min-height: 1.2em;
+}
+
+/* Cortes */
+.cortes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.corte {
+    background: var(--suave);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.corte label {
+    width: 100%;
+    font-weight: bold;
+    color: var(--principal);
+}
+
+.corte input {
+    min-width: 0;
+    width: 90px;
+    flex: 1;
+}
+
+.corte input[id^="p"] {
+    flex: 0 0 64px;
+    width: 64px;
+}
+
+/* Resultado */
+.oculto {
+    display: none;
+}
+
+.nota-grande {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.nota-grande strong {
+    font-size: 3rem;
+    color: var(--principal);
+}
+
+.estado {
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+    background: #888;
+}
+
+.estado.reprobado {
+    background: #ef4444;
+}
+
+.estado.aprobado {
+    background: #f59e0b;
+}
+
+.estado.notable {
+    background: #22c55e;
+}
+
+.estado.excelente {
+    background: #3b82f6;
+}
+
+.progreso {
+    height: 16px;
+    background: var(--suave);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 14px 0;
+}
+
+.barra-prog {
+    height: 100%;
+    width: 0%;
+    background: #888;
+    border-radius: 10px;
+    transition: width 0.8s ease, background 0.8s ease;
+}
+
+.mensaje {
+    font-weight: 600;
+}
+
+/* Grupo */
+.resultados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 10px 0;
+}
+
+.caja {
+    flex: 1;
+    min-width: 100px;
+    background: var(--suave);
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+}
+
+.caja small {
+    display: block;
+    opacity: 0.7;
+    margin-bottom: 4px;
+}
+
+.caja strong {
+    font-size: 1.3rem;
+    color: var(--principal);
+}
+
+.tabla-scroll {
+    overflow-x: auto;
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    margin-top: 8px;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--borde);
+}
+
+th {
+    background: var(--principal);
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+tr:nth-child(even) {
+    background: var(--suave);
+}
+
+td.ok {
+    color: #22c55e;
+    font-weight: bold;
+}
+
+td.mal {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+td button {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    background: #ef4444;
+}
+
+/* Código */
+details {
+    margin-top: 14px;
+}
+
+summary {
+    cursor: pointer;
+    color: var(--principal);
+    font-weight: 600;
+}
+
+pre {
+    background: var(--codigo);
+    color: #a6e3a1;
+    padding: 14px;
+    border-radius: 10px;
+    margin-top: 8px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+}
+
+footer {
+    text-align: center;
+    color: white;
+    padding: 24px;
+    opacity: 0.85;
+}
+
+@media (max-width: 520px) {
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .nota-grande strong {
+        font-size: 2.4rem;
+    }
+}

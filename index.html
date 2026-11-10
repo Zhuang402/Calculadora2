@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Notas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <button id="btnTema" class="tema" onclick="cambiarTema()" aria-label="Cambiar tema">🌙</button>
+        <h1>🎓 Calculadora de Notas</h1>
+        <p>Estructuras algorítmicas con JavaScript • Escala de 0.0 a 5.0</p>
+    </header>
+
+    <main>
+        <!-- 1 y 2: SECUENCIAL + CONDICIONAL -->
+        <section class="card" id="cardNota">
+            <span class="etiqueta">Secuencial + Condicional</span>
+            <h2>Nota final de un estudiante</h2>
+            <p>Escribe las notas de cada corte. Si dejas el <b>corte 3 vacío</b>, te digo cuánto necesitas para aprobar.
+            </p>
+
+            <div class="fila">
+                <input type="text" id="nombre" placeholder="Nombre del estudiante">
+            </div>
+
+            <div class="cortes">
+                <div class="corte">
+                    <label>Corte 1</label>
+                    <input type="number" id="n1" placeholder="Nota" min="0" max="5" step="0.1">
+                    <input type="number" id="p1" value="30" min="1" max="100"><small>%</small>
+                </div>
+                <div class="corte">
+                    <label>Corte 2</label>
+                    <input type="number" id="n2" placeholder="Nota" min="0" max="5" step="0.1">
+                    <input type="number" id="p2" value="30" min="1" max="100"><small>%</small>
+                </div>
+                <div class="corte">
+                    <label>Corte 3</label>
+                    <input type="number" id="n3" placeholder="Nota" min="0" max="5" step="0.1">
+                    <input type="number" id="p3" value="40" min="1" max="100"><small>%</small>
+                </div>
+            </div>
+
+            <button onclick="calcular()">Calcular nota final</button>
+            <p id="msgNota" class="aviso"></p>
+
+            <div id="resultadoNota" class="oculto">
+                <div class="nota-grande">
+                    <strong id="notaFinal">0.0</strong>
+                    <span id="estadoNota" class="estado">--</span>
+                </div>
+                <div class="progreso">
+                    <div id="barraNota" class="barra-prog"></div>
+                </div>
+                <p id="mensajeNota" class="mensaje"></p>
+            </div>
+
+            <details>
+                <summary>Ver el código</summary>
+                <pre>// Secuencial
+const final = (n1 * p1 + n2 * p2 + n3 * p3) / 100;
+
+// Condicional
+if (final &lt; 3.0) { "Reprobado" }
+else if (final &lt; 4.0) { "Aprobado" }
+else if (final &lt;= 4.5) { "Notable" }
+else { "Excelente" }</pre>
+            </details>
+        </section>
+
+        <!-- 3: ITERATIVA -->
+        <section class="card">
+            <span class="etiqueta">Iterativa</span>
+            <h2>Notas del grupo</h2>
+            <p>Agrega estudiantes con su nota final. Un ciclo <b>for</b> recorre la lista y calcula las estadísticas.
+            </p>
+
+            <div class="fila">
+                <input type="text" id="gNombre" placeholder="Nombre">
+                <input type="number" id="gNota" placeholder="Nota final" min="0" max="5" step="0.1">
+                <button onclick="agregarEstudiante()">Agregar</button>
+            </div>
+            <div class="fila">
+                <button class="secundario" onclick="cargarEjemplo()">Cargar ejemplo (5 estudiantes)</button>
+                <button class="secundario" onclick="limpiarGrupo()">Limpiar lista</button>
+            </div>
+            <p id="msgGrupo" class="aviso"></p>
+
+            <div class="resultados" id="statsGrupo"></div>
+            <div class="tabla-scroll">
+                <table id="tablaGrupo"></table>
+            </div>
+
+            <details>
+                <summary>Ver el código</summary>
+                <pre>let suma = 0, aprobados = 0;
+for (let i = 0; i &lt; estudiantes.length; i++) {
+  suma += estudiantes[i].nota;
+  if (estudiantes[i].nota &gt;= 3.0) aprobados++;
+}
+const promedio = suma / estudiantes.length;</pre>
+            </details>
+        </section>
+    </main>
+
+    <footer>Proyecto educativo • HTML + CSS + JavaScript</footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
